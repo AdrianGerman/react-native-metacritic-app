@@ -1,14 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { getLatestGames } from "./lib/metacritic";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  TouchableHighlight,
-} from "react-native";
+import Constants from "expo-constants";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 
 export default function App() {
   const [games, setGames] = useState([]);
@@ -22,14 +16,16 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      {games.map((game) => (
-        <View key={game.slug} style={styles.card}>
-          <Image source={{ uri: game.image }} style={styles.image} />
-          <Text style={styles.title}>{game.title}</Text>
-          <Text style={styles.description}>{game.description}</Text>
-          <Text style={styles.score}>{game.score}</Text>
-        </View>
-      ))}
+      <ScrollView>
+        {games.map((game) => (
+          <View key={game.slug} style={styles.card}>
+            <Image source={{ uri: game.image }} style={styles.image} />
+            <Text style={styles.title}>{game.title}</Text>
+            <Text style={styles.score}>{game.score}</Text>
+            <Text style={styles.description}>{game.description}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -40,9 +36,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#242424",
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: Constants.statusBarHeight,
+    padding: 12,
   },
   card: {
-    marginBottom: 10,
+    marginBottom: 42,
   },
   image: {
     width: 107,
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginTop: 10,
     color: "#fff",
   },
   description: {
@@ -63,6 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: "green",
-    marginTop: 10,
+    marginBottom: 10,
   },
 });
