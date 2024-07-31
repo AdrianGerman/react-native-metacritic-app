@@ -1,17 +1,37 @@
-import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View, Image } from "react-native"
+import { StatusBar } from "expo-status-bar";
+import { useEffect, useState } from "react";
+import { getLatestGames } from "./lib/metacritic";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  TouchableHighlight,
+} from "react-native";
 
 export default function App() {
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    getLatestGames().then((games) => {
+      setGames(games);
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: "https://www.metacritic.com/a/img/catalog/provider/6/3/6-1-4763-13.jpg" }}
-        style={{ width: 215, height: 294 }}
-      />
-      <Text style={styles.text}>Mi primer app</Text>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
+      {games.map((game) => (
+        <View key={game.slug} style={styles.card}>
+          <Image source={{ uri: game.image }} style={styles.image} />
+          <Text style={styles.title}>{game.title}</Text>
+          <Text style={styles.description}>{game.description}</Text>
+          <Text style={styles.score}>{game.score}</Text>
+        </View>
+      ))}
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -19,10 +39,30 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#242424",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
-  text: {
+  card: {
+    marginBottom: 10,
+  },
+  image: {
+    width: 107,
+    height: 147,
+    borderRadius: 10,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
     color: "#fff",
-    marginTop: 12
-  }
-})
+  },
+  description: {
+    fontSize: 16,
+    color: "#eee",
+  },
+  score: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "green",
+    marginTop: 10,
+  },
+});
