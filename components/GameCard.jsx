@@ -3,11 +3,20 @@ import { StyleSheet, Text, View, Image, Animated } from "react-native";
 
 export function GameCard({ game }) {
   return (
-    <View key={game.slug} style={styles.card}>
+    <View
+      className="flex-row items-center bg-slate-500/10 p-4 rounded-xl gap-4 mb-10"
+      key={game.slug}
+    >
       <Image source={{ uri: game.image }} style={styles.image} />
-      <Text style={styles.title}>{game.title}</Text>
-      <Text style={styles.score}>{game.score}</Text>
-      <Text style={styles.description}>{game.description}</Text>
+      <View>
+        <Text className="mb-1" style={styles.title}>
+          {game.title}
+        </Text>
+        <Text style={styles.score}>{game.score}</Text>
+        <Text className="mt-2" style={styles.description}>
+          {game.description.slice(0, 100)} ...
+        </Text>
+      </View>
     </View>
   );
 }
