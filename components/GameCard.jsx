@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { StyleSheet, Text, View, Image, Animated } from "react-native";
+import { Score } from "./Score";
 
 export function GameCard({ game }) {
   return (
@@ -12,7 +13,7 @@ export function GameCard({ game }) {
         <Text className="mb-1" style={styles.title}>
           {game.title}
         </Text>
-        <Text style={styles.score}>{game.score}</Text>
+        <Score score={game.score} maxScore={100} />
         <Text className="mt-2" style={styles.description}>
           {game.description.slice(0, 100)} ...
         </Text>
@@ -58,11 +59,5 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 16,
     color: "#eee",
-  },
-  score: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "green",
-    marginBottom: 10,
   },
 });
