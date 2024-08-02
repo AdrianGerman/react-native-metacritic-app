@@ -6,6 +6,7 @@ import { AnimatedGameCard } from "./GameCard";
 import { Logo } from "./Logo";
 import { Link } from "expo-router";
 import { CircleInfoIcon } from "./Icons";
+import { Screen } from "./Screen";
 
 export function Main() {
   const [games, setGames] = useState([]);
@@ -18,7 +19,7 @@ export function Main() {
   }, []);
 
   return (
-    <View className=" bg-[#242424]" style={{ paddingHorizontal: 12 }}>
+    <Screen>
       {games.length === 0 ? (
         <ActivityIndicator color={"#fff"} size={"large"} />
       ) : (
@@ -30,6 +31,6 @@ export function Main() {
           )}
         />
       )}
-    </View>
+    </Screen>
   );
 }
