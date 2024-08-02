@@ -7,7 +7,7 @@ const StyledPressable = styled(Pressable);
 
 export default function About() {
   return (
-    <ScrollView className="pt-12">
+    <ScrollView className="pt-12 bg-[#242424]">
       <Link asChild href="/">
         <StyledPressable className={`active:opacity-20`}>
           <HomeIcon />

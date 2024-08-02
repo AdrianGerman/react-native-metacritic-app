@@ -18,21 +18,7 @@ export function Main() {
   }, []);
 
   return (
-    <View
-      style={{
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-        paddingHorizontal: 12,
-      }}
-    >
-      <View style={{ marginBottom: 20 }}>
-        <Logo />
-      </View>
-      <Link asChild href="/about">
-        <Pressable>
-          <CircleInfoIcon />
-        </Pressable>
-      </Link>
+    <View className=" bg-[#242424]" style={{ paddingHorizontal: 12 }}>
       {games.length === 0 ? (
         <ActivityIndicator color={"#fff"} size={"large"} />
       ) : (
