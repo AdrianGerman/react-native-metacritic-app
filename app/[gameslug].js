@@ -20,6 +20,8 @@ export default function Detail() {
     <Screen>
       <Stack.Screen
         options={{
+          headerStyle: { backgroundColor: "#76428a" },
+          headerTintColor: "white",
           headerLeft: () => {},
           headerRight: () => {},
           headerTitle: gameInfo ? gameInfo.title : "Loading...",
