@@ -7,6 +7,7 @@ import { CircleInfoIcon } from "../components/Icons";
 export default function Layout() {
   return (
     <View className="flex-1">
+      <StatusBar style="light" />
       <Stack
         screenOptions={{
           headerStyle: { backgroundColor: "#282828" },
@@ -22,7 +23,6 @@ export default function Layout() {
           ),
         }}
       />
-      <StatusBar style="light" />
     </View>
   );
 }
